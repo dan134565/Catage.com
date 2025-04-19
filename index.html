@@ -7,18 +7,21 @@
     <style>
         /* Общий стиль страницы */
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f4f4f4;
+            background-color: #f4f7fc;
             color: #333;
             text-align: center;
+            transition: all 0.3s ease-in-out;
         }
 
         h1 {
             margin-top: 20px;
-            font-size: 2em;
+            font-size: 2.5em;
             color: #333;
+            text-transform: uppercase;
+            animation: fadeIn 2s ease-out;
         }
 
         .container {
@@ -26,73 +29,109 @@
             max-width: 500px;
             margin: 0 auto;
             background-color: #fff;
-            padding: 20px;
+            padding: 30px;
             border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
             margin-top: 20px;
+            animation: slideIn 1s ease-out;
         }
 
         .message {
-            font-size: 1.2em;
+            font-size: 1.1em;
             margin-top: 20px;
         }
 
-        /* Форма для ввода */
+        .question {
+            font-size: 1.1em;
+            color: #007BFF;
+            cursor: pointer;
+            text-decoration: underline;
+        }
+
         input[type="number"], select {
             padding: 10px;
-            font-size: 1em;
-            margin: 10px 0;
-            border-radius: 5px;
+            font-size: 1.2em;
+            margin: 15px 0;
+            border-radius: 8px;
             border: 1px solid #ccc;
             width: 100%;
         }
 
         button {
-            padding: 10px 20px;
+            padding: 12px 20px;
             background-color: #4CAF50;
             color: white;
             border: none;
-            border-radius: 5px;
-            font-size: 1em;
+            border-radius: 8px;
+            font-size: 1.1em;
             cursor: pointer;
+            transition: background-color 0.3s;
         }
 
         button:hover {
             background-color: #45a049;
         }
 
-        /* Адаптация для маленьких экранов */
+        #result {
+            font-size: 1.4em;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+
+        .answer {
+            background-color: #e7f7e7;
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 15px;
+            border: 1px solid #ddd;
+        }
+
+        /* Анимации */
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        @keyframes slideIn {
+            0% { transform: translateY(30px); opacity: 0; }
+            100% { transform: translateY(0); opacity: 1; }
+        }
+
+        /* Адаптивный дизайн */
         @media screen and (max-width: 768px) {
             h1 {
-                font-size: 1.5em;
+                font-size: 2em;
             }
 
             .container {
                 width: 95%;
-                padding: 15px;
-            }
-
-            .message {
-                font-size: 1em;
+                padding: 20px;
             }
         }
+
     </style>
 </head>
 <body>
 
-    <h1>Калькулятор возраста кота</h1>
+    <h1>Калькулятор возраста кота 🐱</h1>
 
     <div class="container">
-        <!-- Форма для ввода данных -->
-        <h2>Определите возраст вашего кота</h2>
         <p class="message" id="deviceMessage">Загрузка...</p>
 
-        <label for="catAge">Введите возраст вашего кота (в человеческих годах):</label>
-        <input type="number" id="catAge" placeholder="Возраст кота" required>
-
+        <h2>Введите возраст вашего кота</h2>
+        <input type="number" id="catAge" placeholder="Возраст кота (в человеческих годах)" required>
         <button onclick="calculateCatAge()">Перевести в котячий возраст</button>
 
         <h3 id="result"></h3>
+
+        <div class="answer" id="answer"></div>
+
+        <!-- Ответы на вопросы -->
+        <div class="message">
+            <p class="question" onclick="showAnswer()">Как работает этот калькулятор?</p>
+            <p class="question" onclick="showAnswer()">Почему коты так быстро стареют?</p>
+            <p class="question" onclick="showAnswer()">Можно ли доверять этим данным?</p>
+        </div>
     </div>
 
     <script>
@@ -100,11 +139,9 @@
         function detectDevice() {
             const deviceMessage = document.getElementById('deviceMessage');
             if (/Mobi|Android/i.test(navigator.userAgent)) {
-                // Если устройство мобильное
-                deviceMessage.textContent = "Вы используете телефон или планшет.";
+                deviceMessage.textContent = "Вы используете телефон или планшет. 🐾";
             } else {
-                // Если устройство не мобильное (скорее всего компьютер)
-                deviceMessage.textContent = "Вы используете компьютер.";
+                deviceMessage.textContent = "Вы используете компьютер. 💻";
             }
         }
 
@@ -114,19 +151,25 @@
             let catAgeInCatYears;
 
             if (catAge <= 0 || isNaN(catAge)) {
-                alert("Пожалуйста, введите правильный возраст кота.");
+                alert("Пожалуйста, введите правильный возраст кота. 😿");
                 return;
             }
 
             if (catAge === "1") {
-                catAgeInCatYears = 15; // Первый год жизни кота
+                catAgeInCatYears = 15;
             } else if (catAge === "2") {
-                catAgeInCatYears = 24; // Второй год жизни кота
+                catAgeInCatYears = 24;
             } else {
-                catAgeInCatYears = 24 + (catAge - 2) * 4; // Каждый последующий год кота
+                catAgeInCatYears = 24 + (catAge - 2) * 4;
             }
 
-            document.getElementById("result").textContent = `Возраст вашего кота в котячьих годах: ${catAgeInCatYears}`;
+            document.getElementById("result").textContent = `Возраст вашего кота в котячьих годах: ${catAgeInCatYears} 🐾`;
+        }
+
+        // Показываем ответ на вопросы
+        function showAnswer() {
+            const answer = document.getElementById("answer");
+            answer.innerHTML = `<strong>Ответ:</strong> Этот калькулятор основывается на приблизительных данных, которые могут отличаться в зависимости от породы и здоровья кота. Каждый кот - уникален! 😸`;
         }
 
         // Вызов функции при загрузке страницы
