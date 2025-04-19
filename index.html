@@ -130,7 +130,8 @@
             // Проверяем, выбрал ли пользователь вариант
             const selectedOption = document.querySelector('input[name="device"]:checked');
             if (selectedOption) {
-                alert(`Вы выбрали: ${selectedOption.value}`);
+                // Переход на другую страницу с результатами
+                window.location.href = "thank_you.html?device=" + selectedOption.value;
             } else {
                 alert("Пожалуйста, выберите устройство.");
             }
