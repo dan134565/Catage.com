@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Детектор устройства</title>
+    <title>Калькулятор возраста кота</title>
     <style>
         /* Общий стиль страницы */
         body {
@@ -37,6 +37,30 @@
             margin-top: 20px;
         }
 
+        /* Форма для ввода */
+        input[type="number"], select {
+            padding: 10px;
+            font-size: 1em;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            width: 100%;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1em;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
         /* Адаптация для маленьких экранов */
         @media screen and (max-width: 768px) {
             h1 {
@@ -56,10 +80,19 @@
 </head>
 <body>
 
-    <h1>Определение вашего устройства</h1>
+    <h1>Калькулятор возраста кота</h1>
 
     <div class="container">
+        <!-- Форма для ввода данных -->
+        <h2>Определите возраст вашего кота</h2>
         <p class="message" id="deviceMessage">Загрузка...</p>
+
+        <label for="catAge">Введите возраст вашего кота (в человеческих годах):</label>
+        <input type="number" id="catAge" placeholder="Возраст кота" required>
+
+        <button onclick="calculateCatAge()">Перевести в котячий возраст</button>
+
+        <h3 id="result"></h3>
     </div>
 
     <script>
@@ -73,6 +106,27 @@
                 // Если устройство не мобильное (скорее всего компьютер)
                 deviceMessage.textContent = "Вы используете компьютер.";
             }
+        }
+
+        // Функция для вычисления возраста кота
+        function calculateCatAge() {
+            const catAge = document.getElementById("catAge").value;
+            let catAgeInCatYears;
+
+            if (catAge <= 0 || isNaN(catAge)) {
+                alert("Пожалуйста, введите правильный возраст кота.");
+                return;
+            }
+
+            if (catAge === "1") {
+                catAgeInCatYears = 15; // Первый год жизни кота
+            } else if (catAge === "2") {
+                catAgeInCatYears = 24; // Второй год жизни кота
+            } else {
+                catAgeInCatYears = 24 + (catAge - 2) * 4; // Каждый последующий год кота
+            }
+
+            document.getElementById("result").textContent = `Возраст вашего кота в котячьих годах: ${catAgeInCatYears}`;
         }
 
         // Вызов функции при загрузке страницы
