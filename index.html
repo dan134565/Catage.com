@@ -1,154 +1,99 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <title>Котячий возраст 🐾</title>
-  <style>
-    body {
-      font-family: "Segoe UI", sans-serif;
-      background: linear-gradient(145deg, #f9f9f9, #e0e0e0);
-      margin: 0;
-      padding: 0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      min-height: 100vh;
-      padding-top: 60px;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Опрос: Компьютер или Телефон?</title>
+    <style>
+        /* Общий стиль страницы */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
 
-    h1 {
-      color: #333;
-      margin-bottom: 10px;
-    }
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 2em;
+            color: #333;
+        }
 
-    .container {
-      background: white;
-      padding: 30px;
-      border-radius: 15px;
-      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-      width: 90%;
-      max-width: 400px;
-      text-align: center;
-      transition: all 0.3s ease;
-    }
+        .container {
+            width: 90%;
+            max-width: 500px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
 
-    input, button {
-      width: 100%;
-      padding: 12px;
-      margin-top: 15px;
-      font-size: 16px;
-      border-radius: 10px;
-      border: 1px solid #ccc;
-      transition: 0.2s;
-    }
+        .question {
+            font-size: 1.2em;
+            margin-bottom: 20px;
+            text-align: center;
+        }
 
-    input:focus {
-      outline: none;
-      border-color: #6a9bcf;
-    }
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
 
-    button {
-      background-color: #6a9bcf;
-      color: white;
-      cursor: pointer;
-      border: none;
-    }
+        .option {
+            display: flex;
+            align-items: center;
+            font-size: 1em;
+            gap: 10px;
+        }
 
-    button:hover {
-      background-color: #517eb1;
-    }
+        .option input[type="radio"] {
+            width: 20px;
+            height: 20px;
+        }
 
-    #result {
-      margin-top: 20px;
-      font-size: 18px;
-      color: #444;
-      min-height: 30px;
-    }
+        /* Адаптация для маленьких экранов */
+        @media screen and (max-width: 768px) {
+            h1 {
+                font-size: 1.5em;
+            }
 
-    .faq {
-      margin-top: 50px;
-      max-width: 700px;
-      padding: 20px;
-      background: #fff;
-      border-radius: 15px;
-      box-shadow: 0 8px 16px rgba(0,0,0,0.1);
-    }
+            .container {
+                width: 95%;
+                padding: 15px;
+            }
 
-    .faq h2 {
-      text-align: center;
-      margin-bottom: 20px;
-    }
-
-    .question {
-      margin-bottom: 15px;
-    }
-
-    .question summary {
-      cursor: pointer;
-      font-weight: bold;
-      color: #333;
-    }
-
-    .question p {
-      margin-top: 5px;
-      color: #555;
-    }
-  </style>
+            .question {
+                font-size: 1em;
+            }
+        }
+    </style>
 </head>
 <body>
 
-  <div class="container">
-    <h1>Переводчик котячьего возраста 🐾</h1>
-    <input type="number" id="catAge" placeholder="Введите возраст кота (в годах)" min="0">
-    <button onclick="convertAge()">Узнать возраст в человеческих годах</button>
-    <div id="result"></div>
-  </div>
+    <h1>Опрос: Какой у вас девайс?</h1>
 
-  <div class="faq">
-    <h2>Часто задаваемые вопросы</h2>
+    <div class="container">
+        <div class="question">
+            <p>Вы используете компьютер или телефон?</p>
+        </div>
+        
+        <div class="options">
+            <div class="option">
+                <input type="radio" id="computer" name="device" value="computer">
+                <label for="computer">Компьютер</label>
+            </div>
 
-    <details class="question">
-      <summary>🔹 Как это работает?</summary>
-      <p>Возраст кота в человеческих годах считается по формуле: 1 год = 15 лет, 2 года = 24 года, а далее +4 года за каждый год. Это приближённая шкала, чтобы понять, насколько зрел кот.</p>
-    </details>
+            <div class="option">
+                <input type="radio" id="phone" name="device" value="phone">
+                <label for="phone">Телефон</label>
+            </div>
+        </div>
+    </div>
 
-    <details class="question">
-      <summary>🔹 Для чего нужен такой перевод?</summary>
-      <p>Чтобы понимать, насколько ваш кот "взрослый" по человеческим меркам. Это помогает лучше заботиться о нём — например, пожилым котам нужен другой уход.</p>
-    </details>
-
-    <details class="question">
-      <summary>🔹 Почему формула не линейная?</summary>
-      <p>Первые годы жизни кота проходят намного быстрее — он становится взрослым уже к 1-2 годам. Поэтому первый и второй год "весомее", чем остальные.</p>
-    </details>
-
-    <details class="question">
-      <summary>🔹 Мой коту 0.5 года. Что делать?</summary>
-      <p>Если котёнку меньше года, это примерно как младенец — до 10 человеческих лет. Такой возраст можно оценить отдельно, но в этой версии пока берутся только целые числа.</p>
-    </details>
-
-  </div>
-
-  <script>
-    function convertAge() {
-      const age = parseFloat(document.getElementById('catAge').value);
-      let result = '';
-
-      if (isNaN(age) || age < 0) {
-        result = 'Введите корректный возраст 😿';
-      } else if (age < 1) {
-        result = 'Меньше года — это как младенец (примерно до 10 человеческих лет)';
-      } else if (age === 1) {
-        result = '1 котячий год = 15 человеческих лет';
-      } else if (age === 2) {
-        result = '2 котячих года = 24 человеческих года';
-      } else {
-        const humanAge = 24 + Math.round((age - 2) * 4);
-        result = `${age} котячих лет ≈ ${humanAge} человеческих лет 🧓`;
-      }
-
-      document.getElementById('result').textContent = result;
-    }
-  </script>
 </body>
 </html>
