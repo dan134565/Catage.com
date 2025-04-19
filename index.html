@@ -56,6 +56,30 @@
             height: 20px;
         }
 
+        /* Стиль кнопки */
+        .button-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .continue-button {
+            background-color: #4CAF50; /* Зелёный цвет */
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            text-align: center;
+            font-size: 1.2em;
+            cursor: pointer;
+            border-radius: 5px;
+            width: 100%;
+            max-width: 200px;
+        }
+
+        .continue-button:hover {
+            background-color: #45a049; /* Тёмно-зелёный при наведении */
+        }
+
         /* Адаптация для маленьких экранов */
         @media screen and (max-width: 768px) {
             h1 {
@@ -93,7 +117,25 @@
                 <label for="phone">Телефон</label>
             </div>
         </div>
+
+        <!-- Кнопка "Продолжить" -->
+        <div class="button-container">
+            <button class="continue-button" onclick="nextStep()">Продолжить</button>
+        </div>
     </div>
+
+    <script>
+        // Функция для обработки нажатия кнопки "Продолжить"
+        function nextStep() {
+            // Проверяем, выбрал ли пользователь вариант
+            const selectedOption = document.querySelector('input[name="device"]:checked');
+            if (selectedOption) {
+                alert(`Вы выбрали: ${selectedOption.value}`);
+            } else {
+                alert("Пожалуйста, выберите устройство.");
+            }
+        }
+    </script>
 
 </body>
 </html>
