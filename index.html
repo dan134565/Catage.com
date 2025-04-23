@@ -16,6 +16,7 @@
       align-items: center;
       min-height: 100vh;
       overflow-x: hidden;
+      font-size: 18px;
     }
 
     header {
@@ -23,20 +24,22 @@
       backdrop-filter: blur(8px);
       width: 100%;
       text-align: center;
-      padding: 1.5rem;
+      padding: 2rem;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     }
 
     header h1 {
-      font-size: 2.5rem;
+      font-size: 3rem;
       margin: 0;
       color: #333;
     }
 
     main {
       text-align: center;
-      padding: 2rem;
+      padding: 3rem;
       animation: fadeIn 1.2s ease-in;
+      max-width: 800px;
+      width: 100%;
     }
 
     @keyframes fadeIn {
@@ -82,14 +85,15 @@
       background-color: #ffffff88;
       backdrop-filter: blur(4px);
       font-size: 1rem;
+      width: 100%;
     }
 
     .faq {
-      max-width: 600px;
+      max-width: 800px;
       margin: 2rem auto;
       text-align: left;
       background-color: #fff5f9;
-      padding: 1.5rem;
+      padding: 2rem;
       border-radius: 20px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     }
@@ -97,10 +101,28 @@
     .faq h2 {
       text-align: center;
       color: #333;
+      cursor: pointer;
+      user-select: none;
     }
 
-    .faq p {
-      margin: 0.5rem 0;
+    .faq-item {
+      margin: 1rem 0;
+    }
+
+    .faq-question {
+      font-weight: bold;
+      cursor: pointer;
+      color: #444;
+    }
+
+    .faq-answer {
+      margin-top: 0.5rem;
+      display: none;
+      animation: fadeIn 0.5s ease-in-out;
+    }
+
+    .faq-item.open .faq-answer {
+      display: block;
     }
   </style>
 </head>
@@ -117,11 +139,23 @@
   </main>
 
   <div class="faq">
-    <h2>Часто задаваемые вопросы ❓</h2>
-    <p><strong>Как работает этот сайт?</strong><br>Мы используем формулу: <em>первые 2 года = 24 "кошачьих" года, далее каждый год +4</em>. Это даёт реалистичную оценку 🧠.</p>
-    <p><strong>Можно ли вводить возраст с месяцами?</strong><br>Да! Например, 1.5 = 1 год и 6 месяцев 🐾.</p>
-    <p><strong>Почему сайт такой милый?</strong><br>Потому что коты заслуживают этого 😻.</p>
-    <p><strong>Это точно?</strong><br>Ну почти. Всё зависит от характера кота. Некоторые в 10 лет ещё подростки 🧢.</p>
+    <h2 onclick="toggleAllFaqs()">Часто задаваемые вопросы ❓</h2>
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggleFaq(this)">Как работает этот сайт?</div>
+      <div class="faq-answer">Мы используем формулу: <em>первые 2 года = 24 "кошачьих" года, далее каждый год +4</em>. Это даёт реалистичную оценку 🧠.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggleFaq(this)">Можно ли вводить возраст с месяцами?</div>
+      <div class="faq-answer">Да! Например, 1.5 = 1 год и 6 месяцев 🐾.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggleFaq(this)">Почему сайт такой милый?</div>
+      <div class="faq-answer">Потому что коты заслуживают этого 😻.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggleFaq(this)">Это точно?</div>
+      <div class="faq-answer">Ну почти. Всё зависит от характера кота. Некоторые в 10 лет ещё подростки 🧢.</div>
+    </div>
   </div>
 
   <footer>
@@ -145,6 +179,11 @@
       }
 
       document.getElementById("result").innerText = `Кошке бы было примерно ${catAge.toFixed(1)} котолет 😼`;
+    }
+
+    function toggleFaq(element) {
+      const item = element.closest(".faq-item");
+      item.classList.toggle("open");
     }
   </script>
 </body>
