@@ -1,206 +1,151 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Калькулятор возраста кота</title>
-    <style>
-        /* Общий стиль страницы */
-        body {
-            font-family: 'Arial', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f7fc;
-            color: #333;
-            text-align: center;
-            transition: all 0.3s ease-in-out;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Кошачий Возраст 🐾</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&display=swap');
 
-        h1 {
-            margin-top: 20px;
-            font-size: 2.5em;
-            color: #333;
-            text-transform: uppercase;
-            animation: fadeIn 2s ease-out;
-        }
+    body {
+      margin: 0;
+      font-family: 'Rubik', sans-serif;
+      background: linear-gradient(145deg, #e0f7fa, #ffe0f0);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
 
-        .container {
-            width: 90%;
-            max-width: 600px;
-            margin: 0 auto;
-            background-color: #fff;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-            margin-top: 30px;
-            animation: slideIn 1s ease-out;
-        }
+    header {
+      background-color: #ffffffbb;
+      backdrop-filter: blur(8px);
+      width: 100%;
+      text-align: center;
+      padding: 1.5rem;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
 
-        .message {
-            font-size: 1.1em;
-            margin-top: 20px;
-        }
+    header h1 {
+      font-size: 2.5rem;
+      margin: 0;
+      color: #333;
+    }
 
-        .question {
-            font-size: 1.2em;
-            color: #007BFF;
-            cursor: pointer;
-            text-decoration: underline;
-            margin-top: 10px;
-        }
+    main {
+      text-align: center;
+      padding: 2rem;
+      animation: fadeIn 1.2s ease-in;
+    }
 
-        .question:hover {
-            color: #0056b3;
-        }
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(20px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
 
-        input[type="number"], select {
-            padding: 12px;
-            font-size: 1.2em;
-            margin: 15px 0;
-            border-radius: 8px;
-            border: 1px solid #ccc;
-            width: 100%;
-            box-sizing: border-box;
-        }
+    input, button {
+      font-size: 1.2rem;
+      padding: 0.7rem 1.2rem;
+      margin: 0.5rem;
+      border-radius: 10px;
+      border: none;
+      outline: none;
+      transition: all 0.3s;
+    }
 
-        button {
-            padding: 12px 20px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-size: 1.2em;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
+    input {
+      width: 100px;
+    }
 
-        button:hover {
-            background-color: #45a049;
-        }
+    button {
+      background-color: #ff90b3;
+      color: white;
+      cursor: pointer;
+    }
 
-        #result {
-            font-size: 1.4em;
-            margin-top: 20px;
-            font-weight: bold;
-            color: #4CAF50;
-        }
+    button:hover {
+      background-color: #ff5f8e;
+    }
 
-        .answer {
-            background-color: #e7f7e7;
-            padding: 15px;
-            border-radius: 5px;
-            margin-top: 15px;
-            border: 1px solid #ddd;
-        }
+    .result {
+      margin-top: 1rem;
+      font-size: 1.5rem;
+      color: #444;
+      font-weight: bold;
+    }
 
-        /* Анимации */
-        @keyframes fadeIn {
-            0% { opacity: 0; }
-            100% { opacity: 1; }
-        }
+    footer {
+      margin-top: auto;
+      text-align: center;
+      padding: 2rem;
+      background-color: #ffffff88;
+      backdrop-filter: blur(4px);
+      font-size: 1rem;
+    }
 
-        @keyframes slideIn {
-            0% { transform: translateY(30px); opacity: 0; }
-            100% { transform: translateY(0); opacity: 1; }
-        }
+    .faq {
+      max-width: 600px;
+      margin: 2rem auto;
+      text-align: left;
+      background-color: #fff5f9;
+      padding: 1.5rem;
+      border-radius: 20px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
 
-        /* Адаптивный дизайн */
-        @media screen and (max-width: 768px) {
-            h1 {
-                font-size: 2em;
-            }
+    .faq h2 {
+      text-align: center;
+      color: #333;
+    }
 
-            .container {
-                width: 95%;
-                padding: 20px;
-            }
-        }
-
-    </style>
+    .faq p {
+      margin: 0.5rem 0;
+    }
+  </style>
 </head>
 <body>
+  <header>
+    <h1>Переводчик Кошачьего Возраста 🐱💫</h1>
+  </header>
 
-    <h1>Калькулятор возраста кота 🐱</h1>
+  <main>
+    <label for="catAge">Введите возраст кота (в годах):</label><br>
+    <input type="number" id="catAge" min="0">
+    <button onclick="calculateCatAge()">Узнать возраст 😸</button>
+    <div class="result" id="result"></div>
+  </main>
 
-    <div class="container">
-        <p class="message" id="deviceMessage">Загрузка...</p>
+  <div class="faq">
+    <h2>Часто задаваемые вопросы ❓</h2>
+    <p><strong>Как работает этот сайт?</strong><br>Мы используем формулу: <em>первые 2 года = 24 "кошачьих" года, далее каждый год +4</em>. Это даёт реалистичную оценку 🧠.</p>
+    <p><strong>Можно ли вводить возраст с месяцами?</strong><br>Да! Например, 1.5 = 1 год и 6 месяцев 🐾.</p>
+    <p><strong>Почему сайт такой милый?</strong><br>Потому что коты заслуживают этого 😻.</p>
+    <p><strong>Это точно?</strong><br>Ну почти. Всё зависит от характера кота. Некоторые в 10 лет ещё подростки 🧢.</p>
+  </div>
 
-        <h2>Введите возраст вашего кота</h2>
-        <input type="number" id="catAge" placeholder="Возраст кота (в человеческих годах)" required>
-        <button onclick="calculateCatAge()">Перевести в котячий возраст</button>
+  <footer>
+    © 2025 CatAge — Твой верный помощник в мире хвостатых. <br>Создан с ❤️ и парой шуток.
+  </footer>
 
-        <h3 id="result"></h3>
+  <script>
+    function calculateCatAge() {
+      const humanAge = parseFloat(document.getElementById("catAge").value);
+      let catAge = 0;
 
-        <div class="answer" id="answer"></div>
+      if (isNaN(humanAge) || humanAge < 0) {
+        document.getElementById("result").innerText = "Пожалуйста, введите корректный возраст 🙀";
+        return;
+      }
 
-        <!-- Ответы на вопросы -->
-        <div class="message">
-            <p class="question" onclick="showAnswer(1)">Как работает этот калькулятор?</p>
-            <p class="question" onclick="showAnswer(2)">Почему коты так быстро стареют?</p>
-            <p class="question" onclick="showAnswer(3)">Можно ли доверять этим данным?</p>
-            <p class="question" onclick="showAnswer(4)">Какой самый старый кот в мире?</p>
-            <p class="question" onclick="showAnswer(5)">Есть ли отличие в возрасте у котов разных пород?</p>
-        </div>
-    </div>
+      if (humanAge <= 2) {
+        catAge = humanAge * 12;
+      } else {
+        catAge = 24 + (humanAge - 2) * 4;
+      }
 
-    <script>
-        // Функция для проверки устройства
-        function detectDevice() {
-            const deviceMessage = document.getElementById('deviceMessage');
-            if (/Mobi|Android/i.test(navigator.userAgent)) {
-                deviceMessage.textContent = "Вы используете телефон или планшет. 🐾";
-            } else {
-                deviceMessage.textContent = "Вы используете компьютер. 💻";
-            }
-        }
-
-        // Функция для вычисления возраста кота
-        function calculateCatAge() {
-            const catAge = document.getElementById("catAge").value;
-            let catAgeInCatYears;
-
-            if (catAge <= 0 || isNaN(catAge)) {
-                alert("Пожалуйста, введите правильный возраст кота. 😿");
-                return;
-            }
-
-            if (catAge === "1") {
-                catAgeInCatYears = 15;
-            } else if (catAge === "2") {
-                catAgeInCatYears = 24;
-            } else {
-                catAgeInCatYears = 24 + (catAge - 2) * 4;
-            }
-
-            document.getElementById("result").textContent = `Возраст вашего кота в котячьих годах: ${catAgeInCatYears} 🐾`;
-        }
-
-        // Показываем ответ на вопросы
-        function showAnswer(questionNumber) {
-            const answer = document.getElementById("answer");
-
-            switch(questionNumber) {
-                case 1:
-                    answer.innerHTML = `<strong>Как работает этот калькулятор?</strong> Этот калькулятор использует стандартную формулу для перевода человеческих лет в "котячие". Однако это приближённая оценка, потому что каждый кот уникален. 😸`;
-                    break;
-                case 2:
-                    answer.innerHTML = `<strong>Почему коты так быстро стареют?</strong> В первые два года жизни коты стареют быстрее, потому что их организмы растут намного быстрее, чем у людей. После двух лет старение замедляется, но всё равно остаётся быстрее, чем у людей. 🐱`;
-                    break;
-                case 3:
-                    answer.innerHTML = `<strong>Можно ли доверять этим данным?</strong> Хотя данные основаны на научных исследованиях, они являются усреднёнными и могут варьироваться в зависимости от здоровья и породы вашего кота. 😺`;
-                    break;
-                case 4:
-                    answer.innerHTML = `<strong>Какой самый старый кот в мире?</strong> Самым старым котом в мире был кот по имени Кримпи, который прожил 38 лет и 3 дня! 😻`;
-                    break;
-                case 5:
-                    answer.innerHTML = `<strong>Есть ли отличие в возрасте у котов разных пород?</strong> Да, породы котов могут влиять на продолжительность жизни и скорость старения. Например, средняя продолжительность жизни персидских котов составляет около 12-17 лет, в то время как сиамские коты могут жить до 20 лет и более! 🐈`;
-                    break;
-            }
-        }
-
-        // Вызов функции при загрузке страницы
-        window.onload = detectDevice;
-    </script>
-
+      document.getElementById("result").innerText = `Кошке бы было примерно ${catAge.toFixed(1)} котолет 😼`;
+    }
+  </script>
 </body>
 </html>
